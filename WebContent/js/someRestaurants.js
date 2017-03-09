@@ -19,8 +19,6 @@ function myFunction(xml) {
              type = xmlDoc.getElementsByTagName("type")[i].childNodes[0].nodeValue;
              imageURL = xmlDoc.getElementsByTagName("imageURL")[i].childNodes[0].nodeValue;
          	
-             console.log(imageURL);
-
              	htmlText = htmlText + 
              	"<div class=\"Popular-Restaurants-grid wow fadeInRight\" data-wow-delay=\"1.4s\">" +
      	"<div class=\"col-md-3 restaurent-logo\">" +
@@ -66,27 +64,34 @@ var getDataFromURL = function(){
 	var restaurantFromURL = f["inputRestaurant"];
 	var foodFromURL = f["inputFood"];
 	
+	cityFromURL = cityFromURL.replace("+", " ");
+	restaurantFromURL = restaurantFromURL.replace("+", " ");
+	foodFromURL = foodFromURL.replace("+", " ");
+
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 	    if (this.readyState == 4 && this.status == 200) {
 	        myFunction(this);
 	    }
 	};
+	console.log(cityFromURL);
+	console.log(restaurantFromURL);
+	console.log(foodFromURL);
 	
 	if(cityFromURL != "" && restaurantFromURL == "" && foodFromURL== ""){
 		xhttp.open("GET", "rest/restaurants/city/" + cityFromURL, true);
 	}else if(cityFromURL == "" && restaurantFromURL != "" && foodFromURL== ""){
-		xhttp.open("GET", "rest/restaurants/restaurantName/" + restaurantFromURL, true);
+		xhttp.open("GET", "rest/restaurants/name/" + restaurantFromURL, true);
 	}else if(cityFromURL == "" && restaurantFromURL == "" && foodFromURL!= ""){
 		xhttp.open("GET", "rest/restaurants/food/" + foodFromURL, true);
 	}else if(cityFromURL != "" && restaurantFromURL != "" && foodFromURL== ""){
-		xhttp.open("GET", "rest/restaurants/cityAndRestaurant/" + cityFromURL, true);
+		xhttp.open("GET", "rest/restaurants/cityAndName/"  +cityFromURL + "&" + restaurantFromURL, true);
 	}else if(cityFromURL != "" && restaurantFromURL == "" && foodFromURL!= ""){
-		xhttp.open("GET", "rest/restaurants/cityAndFood/" + cityFromURL, true);
+		xhttp.open("GET", "rest/restaurants/cityAndFood/" + cityFromURL + "&" + foodFromURL, true);
 	}else if(cityFromURL == "" && restaurantFromURL != "" && foodFromURL!= ""){
-		xhttp.open("GET", "rest/restaurants/restaurantAndFood/" + cityFromURL, true);
+		xhttp.open("GET", "rest/restaurants/nameAndFood/" + restaurantFromURL + "&" + foodFromURL, true);
 	}else if (cityFromURL != "" && restaurantFromURL != "" && foodFromURL!= ""){
-		xhttp.open("GET", "rest/restaurants/cityAndRestaurantAndFood/" + cityFromURL, true);
+		xhttp.open("GET", "rest/restaurants/cityAndNameAndFood/" + cityFromURL + "&" + restaurantFromURL + "&" + foodFromURL, true);
 	}else{
 		//tous les champs sont vides
 		

@@ -42,7 +42,7 @@ public class RestaurantResource {
     }
     
     @GET
-    @Path("/restaurantName/{name}")
+    @Path("/name/{name}")
     public List<Restaurant> getRestaurantsByRestaurantName(@PathParam("name") String name) {
         System.out.println("getRestaurantsByRestaurantName");
         LibraryPersistentBean libraryPersistentBean = new LibraryPersistentBean();
@@ -63,6 +63,62 @@ public class RestaurantResource {
         List<Restaurant> restaurants = new ArrayList<Restaurant>();
         for (Restaurant current : libraryPersistentBean.getRestaurants()) {
             if (food.equals(current.getFood())) {
+                restaurants.add(current);
+            }
+        }
+        return restaurants;
+    }
+    
+    @GET
+    @Path("/cityAndName/{city}&{name}")
+    public List<Restaurant> getRestaurantsByCityAndName(@PathParam("city") String city, @PathParam("name") String name) {
+        System.out.println("getRestaurantsByCityAndName");
+        LibraryPersistentBean libraryPersistentBean = new LibraryPersistentBean();
+        List<Restaurant> restaurants = new ArrayList<Restaurant>();
+        for (Restaurant current : libraryPersistentBean.getRestaurants()) {
+            if (city.equals(current.getCity()) && name.equals(current.getName())) {
+                restaurants.add(current);
+            }
+        }
+        return restaurants;
+    }
+    
+    @GET
+    @Path("/cityAndFood/{city}&{food}")
+    public List<Restaurant> getRestaurantsByCityAndFood(@PathParam("city") String city, @PathParam("food") String food) {
+        System.out.println("getRestaurantsByCityAndFood");
+        LibraryPersistentBean libraryPersistentBean = new LibraryPersistentBean();
+        List<Restaurant> restaurants = new ArrayList<Restaurant>();
+        for (Restaurant current : libraryPersistentBean.getRestaurants()) {
+            if (city.equals(current.getCity()) && food.equals(current.getFood())) {
+                restaurants.add(current);
+            }
+        }
+        return restaurants;
+    }
+    
+    @GET
+    @Path("/nameAndFood/{name}&{food}")
+    public List<Restaurant> getRestaurantsByNameAndFood(@PathParam("name") String name, @PathParam("food") String food) {
+        System.out.println("getRestaurantsByNameAndFood");
+        LibraryPersistentBean libraryPersistentBean = new LibraryPersistentBean();
+        List<Restaurant> restaurants = new ArrayList<Restaurant>();
+        for (Restaurant current : libraryPersistentBean.getRestaurants()) {
+            if (name.equals(current.getName()) && food.equals(current.getFood())) {
+                restaurants.add(current);
+            }
+        }
+        return restaurants;
+    }
+    
+    @GET
+    @Path("/cityAndNameAndFood/{city}&{name}&{food}")
+    public List<Restaurant> getRestaurantsByCityAndNameAndFood(@PathParam("city") String city, @PathParam("name") String name, @PathParam("food") String food) {
+        System.out.println("getRestaurantsByCityAndNameAndFood");
+        LibraryPersistentBean libraryPersistentBean = new LibraryPersistentBean();
+        List<Restaurant> restaurants = new ArrayList<Restaurant>();
+        for (Restaurant current : libraryPersistentBean.getRestaurants()) {
+            if (city.equals(current.getCity()) && name.equals(current.getName()) && food.equals(current.getFood())) {
                 restaurants.add(current);
             }
         }
