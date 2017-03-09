@@ -1,0 +1,10 @@
+.classpath
+.project
+org.eclipse.m2e.core.prefs
+org.eclipse.wst.jsdt.ui.superType.name
+org.eclipse.wst.jsdt.ui.superType.container
+org.eclipse.wst.common.project.facet.core.xml
+org.eclipse.wst.common.component
+org.eclipse.jdt.core.prefs
+.jsdtscope
+oracle.eclipse.tools.webtier.ui.prefs
