@@ -9,6 +9,10 @@ public interface LibraryPersistentBeanRemote {
    void addRestaurant(Restaurant restaurantName);
 
    public List<Restaurant> getRestaurants();
+   
+   public List<Menu> getMenus();
+
+
 
     
 }

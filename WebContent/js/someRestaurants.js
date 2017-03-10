@@ -11,7 +11,7 @@ function myFunction(xml) {
     var htmlText = "";
     
     for (i = 0; i< xmlDoc.getElementsByTagName("id").length; i++){
-        city = xmlDoc.getElementsByTagName("city")[i].childNodes[0].nodeValue;        	
+        	 city = xmlDoc.getElementsByTagName("city")[i].childNodes[0].nodeValue;        	
         	 name = xmlDoc.getElementsByTagName("name")[i].childNodes[0].nodeValue;
              id = xmlDoc.getElementsByTagName("id")[i].childNodes[0].nodeValue;
              address = xmlDoc.getElementsByTagName("address")[i].childNodes[0].nodeValue;
@@ -28,9 +28,8 @@ function myFunction(xml) {
      		"<div class=\"logo-title\">"+
      			"<h4 id=\"test\"><a href=\"#\">" + name + "</a></h4>"+
      		"</div>"+
-     		"<div class=\"rating\">"+
-     			"<span>Note</span>"+
-     		"	<a href=\"#\"> <img src=\"images/star1.png\" class=\"img-responsive\" alt=\"\">(004)</a>"+
+     		"<div class=\"address\">"+
+     		"	<p>" + address + " " + city +"</p>"+
      	"	</div>"+
      	"</div>"+
      	"<div class=\"col-md-7 buy\">"+
@@ -74,27 +73,33 @@ var getDataFromURL = function(){
 	        myFunction(this);
 	    }
 	};
-	console.log(cityFromURL);
-	console.log(restaurantFromURL);
-	console.log(foodFromURL);
+
 	
 	if(cityFromURL != "" && restaurantFromURL == "" && foodFromURL== ""){
 		xhttp.open("GET", "rest/restaurants/city/" + cityFromURL, true);
+		document.getElementById("idRecherche").innerHTML = cityFromURL;
 	}else if(cityFromURL == "" && restaurantFromURL != "" && foodFromURL== ""){
 		xhttp.open("GET", "rest/restaurants/name/" + restaurantFromURL, true);
+		document.getElementById("idRecherche").innerHTML = restaurantFromURL;
 	}else if(cityFromURL == "" && restaurantFromURL == "" && foodFromURL!= ""){
 		xhttp.open("GET", "rest/restaurants/food/" + foodFromURL, true);
+		document.getElementById("idRecherche").innerHTML = foodFromURL;
 	}else if(cityFromURL != "" && restaurantFromURL != "" && foodFromURL== ""){
 		xhttp.open("GET", "rest/restaurants/cityAndName/"  +cityFromURL + "&" + restaurantFromURL, true);
+		document.getElementById("idRecherche").innerHTML = cityFromURL + " - " + restaurantFromURL;
 	}else if(cityFromURL != "" && restaurantFromURL == "" && foodFromURL!= ""){
 		xhttp.open("GET", "rest/restaurants/cityAndFood/" + cityFromURL + "&" + foodFromURL, true);
+		document.getElementById("idRecherche").innerHTML = cityFromURL + " - " + foodFromURL;
 	}else if(cityFromURL == "" && restaurantFromURL != "" && foodFromURL!= ""){
 		xhttp.open("GET", "rest/restaurants/nameAndFood/" + restaurantFromURL + "&" + foodFromURL, true);
+		document.getElementById("idRecherche").innerHTML = restaurantFromURL + " - " + foodFromURL;
 	}else if (cityFromURL != "" && restaurantFromURL != "" && foodFromURL!= ""){
 		xhttp.open("GET", "rest/restaurants/cityAndNameAndFood/" + cityFromURL + "&" + restaurantFromURL + "&" + foodFromURL, true);
+		document.getElementById("idRecherche").innerHTML = cityFromURL + " - " + restaurantFromURL + " - " + foodFromURL;
 	}else{
 		//tous les champs sont vides
-		
+		document.getElementById("idRecherche").innerHTML = "Aucun résultat";
+
 	}
 
 	xhttp.send();	

@@ -8,11 +8,6 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
-/**
- * @author Mickael BARON (baron@ensma.fr, baron.mickael@gmail.com)
- *
- * Date: October 2014
- */
 public class BookRestaurantsMain {
 
 	public static final URI BASE_URI = getBaseURI();

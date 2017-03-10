@@ -36,12 +36,11 @@ function myFunction(xml) {
 	"</div>"+
 	"<div class=\"col-md-2 restaurent-title\">"+
 		"<div class=\"logo-title\">"+
-			"<h4 id=\"test\"><a href=\"#\">" + name + "</a></h4>"+
+			"<h4><a href=\"#\">" + name + "</a></h4>"+
 		"</div>"+
-		"<div class=\"rating\">"+
-			"<span>Note</span>"+
-		"	<a href=\"#\"> <img src=\"images/star1.png\" class=\"img-responsive\" alt=\"\">(004)</a>"+
-	"	</div>"+
+ 		"<div class=\"address\">"+
+ 		"	<p>" + address + " " + city +"</p>"+
+ 	"	</div>"+
 	"</div>"+
 	"<div class=\"col-md-7 buy\">"+
 		"<span></br></span>"+

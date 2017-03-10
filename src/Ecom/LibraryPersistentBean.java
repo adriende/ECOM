@@ -96,4 +96,52 @@ public class LibraryPersistentBean implements LibraryPersistentBeanRemote {
       return restaurants;
    }
    
+   public List<Menu> getMenus() {
+	      Connection con = null;
+	      String url = "jdbc:mysql://52.39.66.76:3306/restaurantgroup";
+	      String driver = "com.mysql.jdbc.Driver";
+	   
+	      String userName = "gangscred";
+	      String password = "Haricotvert38";
+	      List<Menu> menus = new ArrayList<Menu>();
+	      try {
+
+	         Class.forName(driver).newInstance();
+	         con = DriverManager.getConnection(url, userName, password);
+
+	         Statement st = con.createStatement();
+	         ResultSet rs = st.executeQuery("select * from menus");
+
+	         Menu menu;
+	         while (rs.next()) {
+	        	 menu = new Menu();
+	        	 menu.setId(rs.getString(1));                 
+	        	 menu.setName(rs.getString(2));
+	        	 menu.setPrice(rs.getFloat(3));
+	        	 menu.setDescription(rs.getString(4));
+
+
+
+	        	 menus.add(menu);
+	         }
+	      } catch (SQLException ex) {
+	         ex.printStackTrace();
+	      } catch (InstantiationException ex) {
+	         ex.printStackTrace();
+	      } catch (IllegalAccessException ex) {
+	         ex.printStackTrace();
+	      } catch (ClassNotFoundException ex) {
+	         ex.printStackTrace();
+	      }finally {
+	    	    if ( con != null ) {
+	    	        try {
+	    	            /* Et enfin on ferme la connexion */
+	    	            con.close();
+	    	        } catch ( SQLException ignore ) {
+	    	        }
+	    	    }
+	      }
+	      return menus;
+	   }
+   
 }

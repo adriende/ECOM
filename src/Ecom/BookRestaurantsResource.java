@@ -9,11 +9,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 
-/**
- * @author Mickael BARON (baron@ensma.fr, baron.mickael@gmail.com)
- *
- * Date: October 2014
- */
 public class BookRestaurantsResource {
 
     @POST

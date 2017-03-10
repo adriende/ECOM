@@ -8,11 +8,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
-/**
- * @author Mickael BARON (baron@ensma.fr, baron.mickael@gmail.com)
- *
- * Date: October 2014
- */
+
 @Path("/restaurants")
 @Produces("application/xml")
 public class RestaurantResource {

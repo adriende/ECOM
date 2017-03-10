@@ -3,11 +3,6 @@ package Ecom;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Mickael BARON (baron@ensma.fr, baron.mickael@gmail.com)
- *
- * Date: October 2014
- */
 public class BookRestaurantsBD {
 
     private static List<Restaurant> restaurants = new ArrayList<Restaurant>();
