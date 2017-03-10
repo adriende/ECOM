@@ -34,12 +34,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					$('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
 				});
 			});
-		</script>		
+		</script>
 <script src="js/simpleCart.min.js"> </script>	
-<script src="js/someRestaurants.js"> </script>	
+<script src="js/professionnel.js"></script>
 
 </head>
-<body onload="javascript:getDataFromURL();">
+<body>
     <!-- header-section-starts -->
 	<div class="header">
 		<div class="container">
@@ -67,7 +67,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="top-menu">
 					<ul>
 						<li><a href="index.html">Accueil</a></li>|
-						<li class="active"><a href="popular-Restaurents.html">Restaurants</a></li>|
+						<li><a href="popular-Restaurents.html">Restaurants</a></li>|
 						<li><a href="order.html">Commander</a></li>|
 						<li><a href="orders-list.html">Menus</a></li>|
 						<li><a href="contact.html">Contact</a></li>
@@ -78,34 +78,194 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<ul>
 						<li><a href="login.html">Connexion</a>  </li> |
 						<li><a href="register.html">Inscription</a> </li> |
-						<li><a href="professionnel.html">Professionnel ?</a></li>
+						<li><a class="active" href="professionnel.html">Professionnel ?</a></li>
 						<div class="clearfix"></div>
 					</ul>
 				</div>
 				<div class="clearfix"></div>
 			</div>
-		</div>		
+		</div>
 	</div>
-
 	<!-- header-section-ends -->
 	<!-- content-section-starts -->
+	<div class="content">
 	<div class="orders">
-		<div class="order-form-head text-center wow bounceInLeft" data-wow-delay="0.4s">
-			<h3>Restaurants</h3>
-			<p id="idRecherche"></p>
+		<div class="order-form-head text-center wow bounceInLeft" id="titleToHide" data-wow-delay="0.4s">
+			<h3>Demande d'inscription</h3>
+			<p >Vous êtes traiteur ? Vous avez un restaurant ? Rejoignez-nous !</p>
 		</div>
-		<div class="Popular-Restaurants-content">
-			<div class="Popular-Restaurants-grids">
-				<div class="container" id="restaurantsContainer">
+		<div class="main">
+		   <div class="container">
+			  <div class="register" id="divRegister">
+					   <form method="POST">
+					 <div class="register-top-grid">
+						 <div class="wow fadeInLeft" data-wow-delay="0.4s">
+							<span>Nom du restaurant<label></label></span>
+							<input type="text" id="name"> 
+						 </div>
+						 <div class="wow fadeInRight" data-wow-delay="0.4s">
+							<span>Ville<label></label></span>
+							<input type="text" id="city"> 
+						 </div>
+						 <div class="wow fadeInRight" data-wow-delay="0.4s">
+							 <span>Addresse<label></label></span>
+							 <input type="text" id="address"> 
+						 </div>
+						 <div class="wow fadeInRight" data-wow-delay="0.4s">
+							<span>Type de nourriture<label></label></span>
+							<input type="text" id="food"> 
+						 </div>
+						<div class="wow fadeInRight" data-wow-delay="0.4s">
+							<span>Email<label></label></span>
+							<input type="text" id="email"> 
+						 </div>
+						 <div class="wow fadeInRight" data-wow-delay="0.4s">
+							 <span>Type<label></label></span>
+							<label style="margin-right:10%;margin-top:8px;margin-left:15%;" >
+								  <input type="checkbox" id="livraison" value="livraison">
+								  Livraison
+							</label>
+							<label style="margin-right:10%;">
+								  <input type="checkbox" id="aEmporter" value="aEmporter">
+								  À emporter
+							</label>							
+							<label style="margin-right:10%;">
+							<input type="checkbox" id="surPlace" value="surPlace">
+								  Sur Place
+							</label>
+						 </div>
+						 </div>
+					</form>
+					<div class="clearfix"> </div>
+					<div class="register-but">
+						   <input type="submit" onClick="sendInscription();" value="Envoyer la demande">
+						   <div class="clearfix"> </div>
+					</div>
+				
+					</div>
 					
+					
+					<div class="register" id="divRegisterDone" style="display:none">
+
+					<div class="clearfix"> </div>
+						<div class="order-form-head text-center" data-wow-delay="0.4s">
+							<h3>Merci pour votre demande</h3>
+							<p >Nous vous recontacterons bientôt !</p>
+						</div>				
+					</div>
+					
+					
+					
+			   </div>
+		     </div>
+		    </div>
+	<div class="special-offers-section">
+				<div class="container">
+					<div class="special-offers-section-head text-center dotted-line">
+						<h4>Offres spéciales</h4>
+					</div>
+					<div class="special-offers-section-grids">
+					 <div class="m_3"><span class="middle-dotted-line"> </span> </div>
+					   <div class="container">
+						  <ul id="flexiselDemo3">
+							<li>
+								<div class="offer">
+									<div class="offer-image">	
+										<img src="images/p1.jpg" class="img-responsive" alt=""/>
+									</div>
+									<div class="offer-text">
+										<h4>Olister Combo pack lorem</h4>
+										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+										<input type="button" value="Grab It">
+										<span></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</li>
+							<li>
+								<div class="offer">
+									<div class="offer-image">	
+										<img src="images/p2.jpg" class="img-responsive" alt=""/>
+									</div>
+									<div class="offer-text">
+										<h4>Chicken Jumbo pack lorem</h4>
+										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+										<input type="button" value="Grab It">
+										<span></span>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</li>
+							<li>
+								<div class="offer">
+									<div class="offer-image">	
+										<img src="images/p3.jpg" class="img-responsive" alt=""/>
+									</div>
+									<div class="offer-text">
+										<h4>Crab Combo pack lorem</h4>
+										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+										<input type="button" value="Grab It">
+										<span></span>
+									</div>
+									
+									<div class="clearfix"></div>
+									</div>
+							</li>
+							<li>
+								<div class="offer">
+									<div class="offer-image">	
+										<img src="images/p2.jpg" class="img-responsive" alt=""/>
+									</div>
+									<div class="offer-text">
+										<h4>Chicken Jumbo pack lorem</h4>
+										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+										<input type="button" value="Grab It">
+										<span></span>
+									</div>
+									
+									<div class="clearfix"></div>
+									</div>
+						    </li>
+						 </ul>
+					 <script type="text/javascript">
+						$(window).load(function() {
+							
+							$("#flexiselDemo3").flexisel({
+								visibleItems: 3,
+								animationSpeed: 1000,
+								autoPlay: true,
+								autoPlaySpeed: 3000,    		
+								pauseOnHover: true,
+								enableResponsiveBreakpoints: true,
+								responsiveBreakpoints: { 
+									portrait: { 
+										changePoint:480,
+										visibleItems: 1
+									}, 
+									landscape: { 
+										changePoint:640,
+										visibleItems: 2
+									},
+									tablet: { 
+										changePoint:768,
+										visibleItems: 3
+									}
+								}
+							});
+							
+						});
+					    </script>
+					    <script type="text/javascript" src="js/jquery.flexisel.js"></script>
+					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-	<div class="contact-section" id="contact">
+			</div>
+	<div class="clearfix"></div>
+</div>
+		<div class="contact-section" id="contact">
 			<div class="container">
 				<div class="contact-section-grids">
-					<div class="col-md-3 contact-section-grid wow fadeInLeft" data-wow-delay="0.4s">
+					<div class="col-md-3 contact-section-grid">
 						<h4>Plan du site</h4>
 						<ul>
 							<li><i class="point"></i></li>
@@ -172,9 +332,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
 			</div>
 		</div>
+	</div>
 	<!-- content-section-ends -->
 	<!-- footer-section-starts -->
-	<div class="footer">
+	<div class="footer"> 
 		<div class="container">
 			<p class="wow fadeInLeft" data-wow-delay="0.4s">&copy; 2017  Tous droits réservés - GangScred</p>
 		</div>

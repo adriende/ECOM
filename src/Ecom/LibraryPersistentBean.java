@@ -97,6 +97,7 @@ public class LibraryPersistentBean implements LibraryPersistentBeanRemote {
    }
    
    public List<Menu> getMenus() {
+
 	      Connection con = null;
 	      String url = "jdbc:mysql://52.39.66.76:3306/restaurantgroup";
 	      String driver = "com.mysql.jdbc.Driver";
@@ -135,7 +136,6 @@ public class LibraryPersistentBean implements LibraryPersistentBeanRemote {
 	      }finally {
 	    	    if ( con != null ) {
 	    	        try {
-	    	            /* Et enfin on ferme la connexion */
 	    	            con.close();
 	    	        } catch ( SQLException ignore ) {
 	    	        }
@@ -143,5 +143,103 @@ public class LibraryPersistentBean implements LibraryPersistentBeanRemote {
 	      }
 	      return menus;
 	   }
+
+		@Override
+		public void addDemande(DemandeInscription demande) {
+			Connection con = null;
+		      String url = "jdbc:mysql://52.39.66.76:3306/restaurantgroup?useSSL=false";
+		      String driver = "com.mysql.jdbc.Driver";
+
+		      String userName = "gangscred";
+		      String password = "Haricotvert38";
+		     // List<DemandeInscription> demandes = new ArrayList<DemandeInscription>();
+		      try {
+
+		         Class.forName(driver).newInstance();
+		         con = DriverManager.getConnection(url , userName, password);
+
+		         PreparedStatement st = 
+		         con.prepareStatement("insert into demandeInscription(name, city, address, food, type, email) values( ?, ?, ?, ?, ?, ?)");
+		         st.setString(1,demande.getName());
+		         st.setString(2,demande.getCity());
+		         st.setString(3,demande.getAddress());
+		         st.setString(4,demande.getFood());
+		         st.setString(5,demande.getType());
+		         st.setString(6,demande.getEmail());
+
+
+		         int result = st.executeUpdate();    
+		         st.close();
+
+
+		      } catch (SQLException ex) {
+		         ex.printStackTrace();
+		      } catch (InstantiationException ex) {
+		         ex.printStackTrace();
+		      } catch (IllegalAccessException ex) {
+		         ex.printStackTrace();
+		      } catch (ClassNotFoundException ex) {
+		         ex.printStackTrace();
+		      }   finally {
+		          if (con != null) {
+		              try {
+						con.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		          }
+		      } 
+			
+		}
+		
+		@Override
+		public List<DemandeInscription> getDemandes() {
+		    Connection con = null;
+		      String url = "jdbc:mysql://52.39.66.76:3306/restaurantgroup";
+		      String driver = "com.mysql.jdbc.Driver";
+		   
+		      String userName = "gangscred";
+		      String password = "Haricotvert38";
+		      List<DemandeInscription> demandes = new ArrayList<DemandeInscription>();
+		      try {
+
+		         Class.forName(driver).newInstance();
+		         con = DriverManager.getConnection(url, userName, password);
+
+		         Statement st = con.createStatement();
+		         ResultSet rs = st.executeQuery("select * from demandeInscription");
+
+		         DemandeInscription demande;
+		         while (rs.next()) {
+		        	 demande = new DemandeInscription();
+		        	 demande.setId(rs.getString(1));                 
+		        	 demande.setName(rs.getString(2));
+		        	 demande.setCity(rs.getString(3));
+		        	 demande.setAddress(rs.getString(4));
+		        	 demande.setFood(rs.getString(5));
+		        	 demande.setType(rs.getString(6));
+		        	 demande.setEmail(rs.getString(7));
+
+		        	 demandes.add(demande);
+		         }
+		      } catch (SQLException ex) {
+		         ex.printStackTrace();
+		      } catch (InstantiationException ex) {
+		         ex.printStackTrace();
+		      } catch (IllegalAccessException ex) {
+		         ex.printStackTrace();
+		      } catch (ClassNotFoundException ex) {
+		         ex.printStackTrace();
+		      }finally {
+		    	    if ( con != null ) {
+		    	        try {
+		    	            con.close();
+		    	        } catch ( SQLException ignore ) {
+		    	        }
+		    	    }
+		      }
+		      return demandes;
+		}
    
 }

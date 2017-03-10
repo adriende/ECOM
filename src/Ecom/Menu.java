@@ -4,11 +4,6 @@ import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- * @author Mickael BARON (baron@ensma.fr, baron.mickael@gmail.com)
- *
- * Date: October 2014
- */
 @XmlRootElement(name = "menus")
 public class Menu implements Serializable{
 

@@ -41,7 +41,7 @@ function myFunction(xml) {
         	
         	for (i = 0; i< name.length; i++){
         		htmlText = htmlText +
-						"		<div class=\"item_add\"><span class=\"item_price\"><h6>" + price[i] + " € </h6></span></div>";
+						"		<div class=\"item_add add-to-cart\"><span class=\"item_price\"><h6>" + price[i] + " € </h6></span></div>";
         	}
         	htmlText = htmlText +
 						"	</div>"+

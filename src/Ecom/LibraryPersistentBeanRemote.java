@@ -12,6 +12,9 @@ public interface LibraryPersistentBeanRemote {
    
    public List<Menu> getMenus();
 
+   void addDemande(DemandeInscription demande);
+
+   public List<DemandeInscription> getDemandes();
 
 
     
