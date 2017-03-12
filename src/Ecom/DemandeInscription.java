@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "menus")
+@XmlRootElement(name = "demandes")
 public class DemandeInscription implements Serializable{
 
     private String id;

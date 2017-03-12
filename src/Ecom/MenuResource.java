@@ -8,8 +8,12 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 
 @Path("/menus")
+@Api(value="/menus")
 @Produces("application/xml")
 public class MenuResource {
 
@@ -17,6 +21,9 @@ public class MenuResource {
     }
 
     @GET
+    @ApiOperation(
+            value = "Get all menus",
+            response = Menu.class)
     public List<Menu> getMenus() {
         System.out.println("getMenus");
         LibraryPersistentBean libraryPersistentBean = new LibraryPersistentBean();
@@ -26,6 +33,9 @@ public class MenuResource {
     
     @GET
     @Path("/name/{name}")
+    @ApiOperation(
+            value = "Get menus by name",
+            response = Menu.class)
     public List<Menu> getMenusByName(@PathParam("name") String name) {
         System.out.println("getMenusByName");
         LibraryPersistentBean libraryPersistentBean = new LibraryPersistentBean();

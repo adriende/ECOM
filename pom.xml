@@ -19,6 +19,43 @@
 		    <artifactId>jackson-jaxrs</artifactId>
 		    <version>1.9.12</version>
 		</dependency>
+		
+		<dependency>
+		    <groupId>io.swagger</groupId>
+		    <artifactId>swagger-core</artifactId>
+		    <version>1.5.10</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>io.swagger</groupId>
+		    <artifactId>swagger-jersey2-jaxrs</artifactId>
+		    <version>1.5.10</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>io.swagger</groupId>
+		    <artifactId>swagger-servlet</artifactId>
+		    <version>1.5.10</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>io.swagger</groupId>
+		    <artifactId>swagger-annotations</artifactId>
+		    <version>1.5.10</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>io.swagger</groupId>
+		    <artifactId>swagger-jaxrs</artifactId>
+		    <version>1.5.10</version>
+		</dependency>
+		
+			<dependency>
+		  		<groupId>com.fasterxml.jackson.dataformat</groupId>
+		  		<artifactId>jackson-dataformat-yaml</artifactId>
+		  		<version>2.8.3</version>
+			</dependency>
+		
 	</dependencies>
   <name>ECOM3</name>
   <build>

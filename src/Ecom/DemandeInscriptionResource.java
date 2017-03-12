@@ -16,8 +16,12 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 
 @Path("/demandes")
+@Api(value="/demandes")
 @Produces("application/xml")
 public class DemandeInscriptionResource {
 
@@ -25,6 +29,9 @@ public class DemandeInscriptionResource {
     }
 
     @GET
+    @ApiOperation(
+            value = "Get all demandes of inscription",
+            response = DemandeInscription.class)
     public List<DemandeInscription> getDemandes() {
         System.out.println("getDemandes");
         LibraryPersistentBean libraryPersistentBean = new LibraryPersistentBean();
@@ -34,6 +41,9 @@ public class DemandeInscriptionResource {
     
     @GET
     @Path("/demande/{id}")
+    @ApiOperation(
+            value = "Get demandes of inscription by id",
+            response = DemandeInscription.class)
     public List<DemandeInscription> getDemande(@PathParam("id") String id) {
         System.out.println("getDemande");
         LibraryPersistentBean libraryPersistentBean = new LibraryPersistentBean();
@@ -48,6 +58,9 @@ public class DemandeInscriptionResource {
 
 
     @POST
+    @ApiOperation(
+            value = "Post demande of inscription",
+            response = DemandeInscription.class)
     @Produces(MediaType.TEXT_HTML)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public void post(@FormParam("name") String name, @FormParam("city") String city, @FormParam("address") String address, @FormParam("food") String food,

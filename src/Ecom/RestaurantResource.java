@@ -8,8 +8,12 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 
 @Path("/restaurants")
+@Api(value="/restaurants")
 @Produces("application/xml")
 public class RestaurantResource {
 
@@ -17,6 +21,9 @@ public class RestaurantResource {
     }
 
     @GET
+    @ApiOperation(
+            value = "Get all restaurants",
+            response = Restaurant.class)
     public List<Restaurant> getRestaurants() {
         System.out.println("getRestaurants");
         LibraryPersistentBean libraryPersistentBean = new LibraryPersistentBean();
@@ -25,6 +32,9 @@ public class RestaurantResource {
     
     @GET
     @Path("/city/{city}")
+    @ApiOperation(
+            value = "Get restaurants by city",
+            response = Restaurant.class)
     public List<Restaurant> getRestaurantsByCity(@PathParam("city") String city) {
         System.out.println("getRestaurant");
         LibraryPersistentBean libraryPersistentBean = new LibraryPersistentBean();
@@ -39,6 +49,9 @@ public class RestaurantResource {
     
     @GET
     @Path("/name/{name}")
+    @ApiOperation(
+            value = "Get restaurants by name",
+            response = Restaurant.class)
     public List<Restaurant> getRestaurantsByRestaurantName(@PathParam("name") String name) {
         System.out.println("getRestaurantsByRestaurantName");
         LibraryPersistentBean libraryPersistentBean = new LibraryPersistentBean();
@@ -53,6 +66,9 @@ public class RestaurantResource {
     
     @GET
     @Path("/food/{food}")
+    @ApiOperation(
+            value = "Get restaurants by type of food",
+            response = Restaurant.class)
     public List<Restaurant> getRestaurantsByFood(@PathParam("food") String food) {
         System.out.println("getRestaurantsByFood");
         LibraryPersistentBean libraryPersistentBean = new LibraryPersistentBean();
@@ -67,6 +83,9 @@ public class RestaurantResource {
     
     @GET
     @Path("/cityAndName/{city}&{name}")
+    @ApiOperation(
+            value = "Get restaurants by city and name",
+            response = Restaurant.class)
     public List<Restaurant> getRestaurantsByCityAndName(@PathParam("city") String city, @PathParam("name") String name) {
         System.out.println("getRestaurantsByCityAndName");
         LibraryPersistentBean libraryPersistentBean = new LibraryPersistentBean();
@@ -81,6 +100,9 @@ public class RestaurantResource {
     
     @GET
     @Path("/cityAndFood/{city}&{food}")
+    @ApiOperation(
+            value = "Get restaurants by city and type of food",
+            response = Restaurant.class)
     public List<Restaurant> getRestaurantsByCityAndFood(@PathParam("city") String city, @PathParam("food") String food) {
         System.out.println("getRestaurantsByCityAndFood");
         LibraryPersistentBean libraryPersistentBean = new LibraryPersistentBean();
@@ -95,6 +117,9 @@ public class RestaurantResource {
     
     @GET
     @Path("/nameAndFood/{name}&{food}")
+    @ApiOperation(
+            value = "Get restaurants by name and type of food",
+            response = Restaurant.class)
     public List<Restaurant> getRestaurantsByNameAndFood(@PathParam("name") String name, @PathParam("food") String food) {
         System.out.println("getRestaurantsByNameAndFood");
         LibraryPersistentBean libraryPersistentBean = new LibraryPersistentBean();
@@ -109,6 +134,9 @@ public class RestaurantResource {
     
     @GET
     @Path("/cityAndNameAndFood/{city}&{name}&{food}")
+    @ApiOperation(
+            value = "Get restaurants by city, name and type of food",
+            response = Restaurant.class)
     public List<Restaurant> getRestaurantsByCityAndNameAndFood(@PathParam("city") String city, @PathParam("name") String name, @PathParam("food") String food) {
         System.out.println("getRestaurantsByCityAndNameAndFood");
         LibraryPersistentBean libraryPersistentBean = new LibraryPersistentBean();
@@ -124,6 +152,9 @@ public class RestaurantResource {
     
     @GET
     @Path("/numRestaurant/{id}")
+    @ApiOperation(
+            value = "Get restaurants by id",
+            response = Restaurant.class)
     public Restaurant getRestaurant(@PathParam("id") String id) {
         System.out.println("getRestaurant");
         LibraryPersistentBean libraryPersistentBean = new LibraryPersistentBean();
@@ -138,6 +169,9 @@ public class RestaurantResource {
 
     @GET
     @Path("/search")
+    @ApiOperation(
+            value = "Get restaurants by search",
+            response = Restaurant.class)
     public List<Restaurant> searchRestaurantsByCriteria(@QueryParam("ville") String ville, @QueryParam("starthour") String startHour, @QueryParam("endhour") String endHour) {
         System.out.println("searchRestaurantsByCriteria");
 
