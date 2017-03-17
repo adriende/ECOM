@@ -27,8 +27,6 @@ function myFunction(xml) {
         type = xmlDoc.getElementsByTagName("type")[i].childNodes[0].nodeValue;
         imageURL = xmlDoc.getElementsByTagName("imageURL")[i].childNodes[0].nodeValue;
     	
-        console.log(imageURL);
-
         	htmlText = htmlText + 
         	"<div class=\"Popular-Restaurants-grid wow fadeInRight\" data-wow-delay=\"1.4s\">" +
 	"<div class=\"col-md-3 restaurent-logo\">" +
@@ -44,7 +42,7 @@ function myFunction(xml) {
 	"</div>"+
 	"<div class=\"col-md-7 buy\">"+
 		"<span></br></span>"+
-	"	<a class=\"morebtn hvr-rectangle-in\" href=\"orders-list.html\">Commander</a>"+
+     	"	<a class=\"morebtn hvr-rectangle-in\"  href=\"someMenus.html?restaurant="+ name +"\" >Commander</a>"+
 	"</div>"+
 	"<div class=\"clearfix\"></div>"+
 "</div>"

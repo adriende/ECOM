@@ -11,17 +11,19 @@ public class Menu implements Serializable{
     private String name;
     private Float price;
     private String description;
+    private String restaurant;
 
 
 
     public Menu() {
     }
 
-    public Menu(String id,String name, Float price, String description) {
+    public Menu(String id,String name, Float price, String description, String restaurant) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.description = description;
+        this.restaurant = restaurant;
     }
 
     public String getId() {
@@ -54,6 +56,14 @@ public class Menu implements Serializable{
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+    public String getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(String restaurant) {
+        this.restaurant = restaurant;
     }
 
 

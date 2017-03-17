@@ -47,5 +47,22 @@ public class MenuResource {
         }
         return menus;
     }
+    
+    @GET
+    @Path("/restaurant/{restaurant}")
+    @ApiOperation(
+            value = "Get menus by restaurant",
+            response = Menu.class)
+    public List<Menu> getMenusByRestaurant(@PathParam("restaurant") String restaurant) {
+        System.out.println("getMenusByName");
+        LibraryPersistentBean libraryPersistentBean = new LibraryPersistentBean();
+        List<Menu> menus = new ArrayList<Menu>();
+        for (Menu current : libraryPersistentBean.getMenus()) {
+            if (restaurant.equals(current.getRestaurant())) {
+                menus.add(current);
+            }
+        }
+        return menus;
+    }
 
 }

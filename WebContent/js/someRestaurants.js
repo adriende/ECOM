@@ -9,42 +9,52 @@ function myFunction(xml) {
     var type;
     var imageURL;
     var htmlText = "";
+    var url ="";
     
-    for (i = 0; i< xmlDoc.getElementsByTagName("id").length; i++){
-        	 city = xmlDoc.getElementsByTagName("city")[i].childNodes[0].nodeValue;        	
-        	 name = xmlDoc.getElementsByTagName("name")[i].childNodes[0].nodeValue;
-             id = xmlDoc.getElementsByTagName("id")[i].childNodes[0].nodeValue;
-             address = xmlDoc.getElementsByTagName("address")[i].childNodes[0].nodeValue;
-             food = xmlDoc.getElementsByTagName("food")[i].childNodes[0].nodeValue;
-             type = xmlDoc.getElementsByTagName("type")[i].childNodes[0].nodeValue;
-             imageURL = xmlDoc.getElementsByTagName("imageURL")[i].childNodes[0].nodeValue;
-         	
-             	htmlText = htmlText + 
-             	"<div class=\"Popular-Restaurants-grid wow fadeInRight\" data-wow-delay=\"1.4s\">" +
-     	"<div class=\"col-md-3 restaurent-logo\">" +
-     		"<img src="+ imageURL + " class=\"img-responsive\" alt=\"\" />"+
-     	"</div>"+
-     	"<div class=\"col-md-2 restaurent-title\">"+
-     		"<div class=\"logo-title\">"+
-     			"<h4 id=\"test\"><a href=\"#\">" + name + "</a></h4>"+
-     		"</div>"+
-     		"<div class=\"address\">"+
-     		"	<p>" + address + " " + city +"</p>"+
-     	"	</div>"+
-     	"</div>"+
-     	"<div class=\"col-md-7 buy\">"+
-     		"<span></br></span>"+
-     	"	<a class=\"morebtn hvr-rectangle-in\" href=\"orders-list.html\">Commander</a>"+
-     	"</div>"+
-     	"<div class=\"clearfix\"></div>"+
-     "</div>"
-         	
-         
-         document.getElementById("restaurantsContainer").innerHTML = htmlText;
-        	
-        }
-    	
-       
+    if(xmlDoc.getElementsByTagName("id").length>0){
+    	//S'il y a des restaurants disponibles après la recherche
+	    for (i = 0; i< xmlDoc.getElementsByTagName("id").length; i++){
+	        	 city = xmlDoc.getElementsByTagName("city")[i].childNodes[0].nodeValue;        	
+	        	 name = xmlDoc.getElementsByTagName("name")[i].childNodes[0].nodeValue;
+	             id = xmlDoc.getElementsByTagName("id")[i].childNodes[0].nodeValue;
+	             address = xmlDoc.getElementsByTagName("address")[i].childNodes[0].nodeValue;
+	             food = xmlDoc.getElementsByTagName("food")[i].childNodes[0].nodeValue;
+	             type = xmlDoc.getElementsByTagName("type")[i].childNodes[0].nodeValue;
+	             imageURL = xmlDoc.getElementsByTagName("imageURL")[i].childNodes[0].nodeValue;
+	         	
+	
+	             	htmlText = htmlText + 
+	             	"<div class=\"Popular-Restaurants-grid wow fadeInRight\" data-wow-delay=\"1.4s\">" +
+	     	"<div class=\"col-md-3 restaurent-logo\">" +
+	     		"<img src="+ imageURL + " class=\"img-responsive\" alt=\"\" />"+
+	     	"</div>"+
+	     	"<div class=\"col-md-2 restaurent-title\">"+
+	     		"<div class=\"logo-title\">"+
+	     			"<h4 id=\"test\"><a href=\"#\">" + name + "</a></h4>"+
+	     		"</div>"+
+	     		"<div class=\"address\">"+
+	     		"	<p>" + address + " " + city +"</p>"+
+	     	"	</div>"+
+	     	"</div>"+
+	     	"<div class=\"col-md-7 buy\">"+
+	     		"<span></br></span>"+
+	     	"	<a class=\"morebtn hvr-rectangle-in\"  href=\"someMenus.html?restaurant="+ name +"\" >Commander</a>"+
+	     	"</div>"+
+	     	"<div class=\"clearfix\"></div>"+
+	     "</div>"
+	         	
+	
+	        }
+    }else{
+    	//Si aucun restaurant n'est disponible
+      	htmlText = htmlText + 
+			"<div class=\"order-form-head text-center\" >"+
+    		"<p>Pas de restaurants disponibles</p>"+
+    	"</div>";
+    }
+    
+    document.getElementById("restaurantsContainer").innerHTML = htmlText;
+
 
 }
 

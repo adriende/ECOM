@@ -120,6 +120,7 @@ public class LibraryPersistentBean implements LibraryPersistentBeanRemote {
 	        	 menu.setName(rs.getString(2));
 	        	 menu.setPrice(rs.getFloat(3));
 	        	 menu.setDescription(rs.getString(4));
+	        	 menu.setRestaurant(rs.getString(5));
 
 
 
