@@ -88,10 +88,16 @@ var getDataFromURL = function(){
 
 	
 	xhttp.open("GET", "rest/menus/restaurant/" + restaurantFromURL, true);
-	document.getElementById("idRecherche").innerHTML = restaurantFromURL.replace("%20", " ");
+	restaurantFromURL = restaurantFromURL.replaceAll("%20", " ");
+	restaurantFromURL = restaurantFromURL.replaceAll("%C3%A9", "é");
+	document.getElementById("idRecherche").innerHTML = restaurantFromURL;
 
 	xhttp.send();	
 	myFunction(xml);
 	
 }
 
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.split(search).join(replacement);
+};
