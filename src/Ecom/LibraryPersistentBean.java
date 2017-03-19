@@ -16,35 +16,52 @@ public class LibraryPersistentBean implements LibraryPersistentBeanRemote {
    public LibraryPersistentBean(){
    }
 
-   public void addRestaurant(Restaurant restaurant) {
-      Connection con = null;
-      String url = "jdbc:mysql://52.39.66.76:3306/restaurantgroup";
-      String driver = "com.mysql.jdbc.Driver";
+   @Override
+	public void addRestaurant(Restaurant restaurant) {
+		Connection con = null;
+	      String url = "jdbc:mysql://52.39.66.76:3306/restaurantgroup?useSSL=false";
+	      String driver = "com.mysql.jdbc.Driver";
 
-      String userName = "root";
-      String password = "Haricotvert38";
-      List<Restaurant> restaurants = new ArrayList<Restaurant>();
-      try {
+	      String userName = "gangscred";
+	      String password = "Haricotvert38";
+	      try {
 
-         Class.forName(driver).newInstance();
-         con = DriverManager.getConnection(url , userName, password);
+	         Class.forName(driver).newInstance();
+	         con = DriverManager.getConnection(url , userName, password);
 
-         PreparedStatement st = 
-         con.prepareStatement("insert into restaurants(name) values(?)");
-         st.setString(1,restaurant.getName());
+	         PreparedStatement st = 
+	         con.prepareStatement("insert into restaurants(name, ville, address, type, food, image) values( ?, ?, ?, ?, ?, ?)");
+	         st.setString(1,restaurant.getName());
+	         st.setString(2,restaurant.getCity());
+	         st.setString(3,restaurant.getAddress());
+	         st.setString(4,restaurant.getType());
+	         st.setString(5,restaurant.getFood());
+	         st.setString(6,restaurant.getImageURL());
 
-         int result = st.executeUpdate();                
 
-      } catch (SQLException ex) {
-         ex.printStackTrace();
-      } catch (InstantiationException ex) {
-         ex.printStackTrace();
-      } catch (IllegalAccessException ex) {
-         ex.printStackTrace();
-      } catch (ClassNotFoundException ex) {
-         ex.printStackTrace();
-      }    
-   }    
+	         int result = st.executeUpdate();    
+	         st.close();
+
+	      } catch (SQLException ex) {
+	         ex.printStackTrace();
+	      } catch (InstantiationException ex) {
+	         ex.printStackTrace();
+	      } catch (IllegalAccessException ex) {
+	         ex.printStackTrace();
+	      } catch (ClassNotFoundException ex) {
+	         ex.printStackTrace();
+	      }   finally {
+	          if (con != null) {
+	              try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	          }
+	      } 
+		
+	}
 
    public List<Restaurant> getRestaurants() {
       Connection con = null;
@@ -160,13 +177,14 @@ public class LibraryPersistentBean implements LibraryPersistentBeanRemote {
 		         con = DriverManager.getConnection(url , userName, password);
 
 		         PreparedStatement st = 
-		         con.prepareStatement("insert into demandeInscription(name, city, address, food, type, email) values( ?, ?, ?, ?, ?, ?)");
+		         con.prepareStatement("insert into demandeInscription(name, city, address, food, type, email, image) values( ?, ?, ?, ?, ?, ?, ?)");
 		         st.setString(1,demande.getName());
 		         st.setString(2,demande.getCity());
 		         st.setString(3,demande.getAddress());
 		         st.setString(4,demande.getFood());
 		         st.setString(5,demande.getType());
 		         st.setString(6,demande.getEmail());
+		         st.setString(7,demande.getImage());
 
 
 		         int result = st.executeUpdate();    
@@ -221,6 +239,8 @@ public class LibraryPersistentBean implements LibraryPersistentBeanRemote {
 		        	 demande.setFood(rs.getString(5));
 		        	 demande.setType(rs.getString(6));
 		        	 demande.setEmail(rs.getString(7));
+		        	 demande.setImage(rs.getString(8));
+
 
 		        	 demandes.add(demande);
 		         }
@@ -241,6 +261,135 @@ public class LibraryPersistentBean implements LibraryPersistentBeanRemote {
 		    	    }
 		      }
 		      return demandes;
+		}
+
+		@Override
+		public List<User> getUsers() {
+			 Connection con = null;
+		      String url = "jdbc:mysql://52.39.66.76:3306/restaurantgroup";
+		      String driver = "com.mysql.jdbc.Driver";
+		   
+		      String userName = "gangscred";
+		      String password = "Haricotvert38";
+		      List<User> users = new ArrayList<User>();
+		      try {
+
+		         Class.forName(driver).newInstance();
+		         con = DriverManager.getConnection(url, userName, password);
+
+		         Statement st = con.createStatement();
+		         ResultSet rs = st.executeQuery("select * from users");
+
+		         User user;
+		         while (rs.next()) {
+		        	 user = new User();
+		        	 user.setId(rs.getString(1));                 
+		        	 user.setName(rs.getString(2));
+		        	 user.setPassword(rs.getString(3));
+		        	 user.setAddress(rs.getString(4));
+		        	 user.setEmail(rs.getString(5));
+
+
+
+
+		            users.add(user);
+		         }
+		      } catch (SQLException ex) {
+		         ex.printStackTrace();
+		      } catch (InstantiationException ex) {
+		         ex.printStackTrace();
+		      } catch (IllegalAccessException ex) {
+		         ex.printStackTrace();
+		      } catch (ClassNotFoundException ex) {
+		         ex.printStackTrace();
+		      }finally {
+		    	    if ( con != null ) {
+		    	        try {
+		    	            con.close();
+		    	        } catch ( SQLException ignore ) {
+		    	        }
+		    	    }
+		      }
+		      return users;
+		}
+		
+		public void addUser(User user) {
+			Connection con = null;
+		      String url = "jdbc:mysql://52.39.66.76:3306/restaurantgroup?useSSL=false";
+		      String driver = "com.mysql.jdbc.Driver";
+
+		      String userName = "gangscred";
+		      String password = "Haricotvert38";
+		      try {
+
+		         Class.forName(driver).newInstance();
+		         con = DriverManager.getConnection(url , userName, password);
+
+		         PreparedStatement st = 
+		         con.prepareStatement("insert into users(name, password, address, email) values( ?, ?, ?, ?)");
+		         st.setString(1,user.getName());
+		         st.setString(2,user.getPassword());
+		         st.setString(3,user.getAddress());
+		         st.setString(4,user.getEmail());
+
+
+		         int result = st.executeUpdate();    
+		         st.close();
+
+
+		      } catch (SQLException ex) {
+		         ex.printStackTrace();
+		      } catch (InstantiationException ex) {
+		         ex.printStackTrace();
+		      } catch (IllegalAccessException ex) {
+		         ex.printStackTrace();
+		      } catch (ClassNotFoundException ex) {
+		         ex.printStackTrace();
+		      }   finally {
+		          if (con != null) {
+		              try {
+						con.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		          }
+		      } 
+			
+		}
+
+		@Override
+		public void removeDemande(DemandeInscription demande) {
+			 Connection con = null;
+		      String url = "jdbc:mysql://52.39.66.76:3306/restaurantgroup";
+		      String driver = "com.mysql.jdbc.Driver";
+		   
+		      String userName = "gangscred";
+		      String password = "Haricotvert38";
+		      try {
+
+		         Class.forName(driver).newInstance();
+		         con = DriverManager.getConnection(url, userName, password);
+
+		         Statement st = con.createStatement();
+		         st.executeUpdate("DELETE FROM demandeInscription WHERE id="+ demande.getId());
+
+		      } catch (SQLException ex) {
+		         ex.printStackTrace();
+		      } catch (InstantiationException ex) {
+		         ex.printStackTrace();
+		      } catch (IllegalAccessException ex) {
+		         ex.printStackTrace();
+		      } catch (ClassNotFoundException ex) {
+		         ex.printStackTrace();
+		      }finally {
+		    	    if ( con != null ) {
+		    	        try {
+		    	            con.close();
+		    	        } catch ( SQLException ignore ) {
+		    	        }
+		    	    }
+		      }
 		}
    
 }

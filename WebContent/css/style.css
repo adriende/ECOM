@@ -804,7 +804,7 @@ ul.qty li p {
 	background-color: #F9F9F9;
 	padding: 20px;
 }
-.cart-header,.cart-header2,.cart-header3 {
+.cart-header,.cart-header2,.cart-header3,.cart-header42 {
   position: relative;
 }
 /*-- cart-page --*/
@@ -1586,6 +1586,20 @@ i.mail{
 	border:none;
 	outline:none;
 }
+.login-right input[type="button"] {
+	background: #E24425;
+	color: #FFF;
+	font-size: 1em;
+	padding: 0.7em 1.2em;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	display: inline-block;
+	text-transform: uppercase;
+	border:none;
+	outline:none;
+}
 a.forgot {
 	font-size: 1em;
 	margin-right: 11px;
@@ -1799,6 +1813,20 @@ ul.women_pagenation li a:hover{
 	border:none;
 	outline:none;
 }
+.register-but form input[type="button"] {
+	background:#E24425;
+	color: #FFF;
+	font-size: 1.2em;
+	padding: 0.6em 2em;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	display: inline-block;
+	text-transform: uppercase;
+	border:none;
+	outline:none;
+}
 
 .register-but input[type="submit"] {
 	background:#E24425;
@@ -1814,7 +1842,23 @@ ul.women_pagenation li a:hover{
 	border:none;
 	outline:none;
 }
-
+.register-but input[type="button"] {
+	background:#E24425;
+	color: #FFF;
+	font-size: 1.2em;
+	padding: 0.6em 2em;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	display: inline-block;
+	text-transform: uppercase;
+	border:none;
+	outline:none;
+}
+.register-but input[type="button"]:hover {
+	background:#5BBD50;
+}
 .register-but input[type="submit"]:hover {
 	background:#5BBD50;
 }

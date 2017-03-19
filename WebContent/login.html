@@ -35,7 +35,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				});
 			});
 		</script>
-<script src="js/simpleCart.min.js"> </script>	
+<script src="js/simpleCart.min.js"> </script>
+<script src="js/login.js"> </script>	
+	
 </head>
 <body>
     <!-- header-section-starts -->
@@ -103,15 +105,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<p>Si vous avez déjà un compte, connectez-vous !</p>
 				<form>
 				  <div>
-					<span>Email<label>*</label></span>
-					<input type="text"> 
+					<span>Email</span>
+					<input type="text" id="emailLogin" placeholder="Email">
 				  </div>
 				  <div>
-					<span>Mot de passe<label>*</label></span>
-					<input type="text"> 
+					<span>Mot de passe</span>
+					<input type="text" id="passwordLogin" placeholder="Mot de passe">
 				  </div>
 				  <a class="forgot" href="#">Mot de passe oublié ?</a>
-				  <input type="submit" value="Se connecter">
+				  <input type="button" id="connectButton" onclick="loginPro();" value="Se connecter">
 			    </form>
 			   </div>	
 			   <div class="clearfix"> </div>

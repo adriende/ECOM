@@ -14,21 +14,25 @@ public class DemandeInscription implements Serializable{
     private String food;
     private String type;
     private String email;
+    private String image;
+
 
     public DemandeInscription() {
     }
     
-    public DemandeInscription(String name, String city, String address, String food, String type, String email) {
+    public DemandeInscription(String name, String city, String address, String food, String type, String email, String image) {
         this.name = name;
         this.city = city;
         this.address = address;
         this.food = food;
         this.type = type;
         this.email = email;
+        this.image = image;
+
 
     }
 
-    public DemandeInscription(String id, String name, String city, String address, String food, String type, String email) {
+    public DemandeInscription(String id, String name, String city, String address, String food, String type, String email, String image) {
         this.id = id;
         this.name = name;
         this.city = city;
@@ -36,6 +40,8 @@ public class DemandeInscription implements Serializable{
         this.food = food;
         this.type = type;
         this.email = email;
+        this.image = image;
+
 
     }
 
@@ -95,5 +101,12 @@ public class DemandeInscription implements Serializable{
         this.email = email;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
 }

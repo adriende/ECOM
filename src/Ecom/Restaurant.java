@@ -20,6 +20,15 @@ public class Restaurant implements Serializable{
     public Restaurant() {
     }
 
+    public Restaurant(String name, String city, String address, String type, String food, String imageURL) {
+        this.name = name;
+        this.city = city;
+        this.address = address;
+        this.type = type;
+        this.food = food;
+        this.imageURL = imageURL;
+    }
+    
     public Restaurant(String id,String name, String city, String address, String type, String food, String imageURL) {
         this.id = id;
         this.name = name;

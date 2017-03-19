@@ -15,6 +15,13 @@ public interface LibraryPersistentBeanRemote {
    void addDemande(DemandeInscription demande);
 
    public List<DemandeInscription> getDemandes();
+   
+   public List<User> getUsers();
+
+   void addUser(User user);
+   
+   void removeDemande(DemandeInscription demande);
+
 
 
     

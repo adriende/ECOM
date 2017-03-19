@@ -36,6 +36,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			});
 		</script>
 <script src="js/simpleCart.min.js"> </script>	
+<script src="js/register.js"> </script>	
+
 </head>
 <body>
     <!-- header-section-starts -->
@@ -95,15 +97,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<h3>INFORMATIONS PERSONNELLES</h3>
 					 <div class="wow fadeInLeft" data-wow-delay="0.4s">
 						<span>Prénom<label></label></span>
-						<input type="text"> 
+						<input type="text" id="firstName"> 
 					 </div>
 					 <div class="wow fadeInRight" data-wow-delay="0.4s">
 						<span>Nom<label></label></span>
-						<input type="text"> 
+						<input type="text" id="name"> 
 					 </div>
 					 <div class="wow fadeInRight" data-wow-delay="0.4s">
 						 <span>Email<label></label></span>
-						 <input type="text"> 
+						 <input type="text" id="email"> 
 					 </div>
 					 <div class="clearfix"> </div>
 					   <a class="news-letter" href="#">
@@ -114,18 +116,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						    <h3>INFORMATIONS DE CONNECTION</h3>
 							 <div class="wow fadeInLeft" data-wow-delay="0.4s">
 								<span>Mot de passe<label></label></span>
-								<input type="text">
+								<input type="text" id="password">
 							 </div>
 							 <div class="wow fadeInRight" data-wow-delay="0.4s">
 								<span>Confirmation du mot de passe<label></label></span>
-								<input type="text">
+								<input type="text" id="passwordRepeat">
 							 </div>
 					 </div>
 				</form>
 				<div class="clearfix"> </div>
 				<div class="register-but">
 				   <form>
-					   <input type="submit" value="Envoyer">
+					   <input type="button" onclick="sendNewUser();" value="Envoyer">	
+					   				   
 					   <div class="clearfix"> </div>
 				   </form>
 				</div>

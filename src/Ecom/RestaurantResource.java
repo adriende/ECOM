@@ -1,12 +1,18 @@
 package Ecom;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -178,8 +184,19 @@ public class RestaurantResource {
         return BookRestaurantsBD.getRestaurants().subList(0, 2);
     }
 
-    @Path("/bookrestaurants")
-    public BookRestaurantsResource getBookRestaurantsResource() {
-        return new BookRestaurantsResource();
+    
+    @POST
+    @ApiOperation(
+            value = "Post a new restaurant",
+            response = Restaurant.class)
+    @Produces(MediaType.TEXT_HTML)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public void postRestaurant(@FormParam("name") String name, @FormParam("ville") String ville, @FormParam("address") String address, @FormParam("type") String type,
+    		@FormParam("food") String food, @FormParam("image") String image) throws IOException {
+
+    	Restaurant restaurant = new Restaurant(name, ville, address, type, food, image);
+        LibraryPersistentBean libraryPersistentBean = new LibraryPersistentBean();
+        libraryPersistentBean.addRestaurant(restaurant);
+
     }
 }

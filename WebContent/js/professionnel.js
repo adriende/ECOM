@@ -7,6 +7,7 @@ function sendInscription()
     var food = document.getElementById("food").value;
     var type = "";
     var email = document.getElementById("email").value;
+    var image = document.getElementById("image").value;
     
     var livraison = document.getElementById("livraison").checked;
     var aEmporter = document.getElementById("aEmporter").checked;
@@ -22,24 +23,24 @@ function sendInscription()
     	type = type + "surPlace;";
     }
     
-    if(name =="" || city =="" || address =="" || food =="" || email ==""){
+    if(name =="" || city =="" || address =="" || food =="" || email =="" || image ==""){
     	alert("Veuillez remplir tous les champs !")
     }else{
-        document.getElementById("divRegister").style.display="none";
-        document.getElementById("titleToHide").style.display="none";
-        document.getElementById("divRegisterDone").style.display="block";
-        
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'http://localhost:8080/ECOM3/rest/demandes');
+        xhr.open('POST', 'rest/demandes');
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         
         xhr.onreadystatechange = function() {
         	console.log("onreadystatechange");
             if(xhr.readyState == 4 && xhr.status == 200) {
                 alert(xhr.responseText);
+            }else{
+                document.getElementById("divRegister").style.display="none";
+                document.getElementById("titleToHide").style.display="none";
+                document.getElementById("divRegisterDone").style.display="block";
             }
         }
         
-        xhr.send('name=' + name + '&city=' + city + '&address=' + address + '&food=' + food + '&type=' + type + '&email=' + email);
+        xhr.send('name=' + name + '&city=' + city + '&address=' + address + '&food=' + food + '&type=' + type + '&email=' + email + '&image=' + image);
     }
 }    
