@@ -54,7 +54,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<a href="checkout.html">
 								<h3> <span id="in-cart-items-subtotal"> 0.00€ </span> (<span id="in-cart-items-num"> 0 </span> menus)<img src="images/bag.png" alt=""></h3>
 							</a>	
-							<p><a href="javascript:;" class="simpleCart_empty">Vider le panier</a></p>
+							<p><a href="javascript:clearCart();" class="simpleCart_empty">Vider le panier</a></p>
 							<div class="clearfix"> </div>
 						</div>
 					</div>
@@ -92,52 +92,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <div class="cart-items">
 	<div class="container">
 		<div class="register" id="divRegister">
-			 <h1>Mes commandes</h1>
-				<script>$(document).ready(function(c) {
-					$('.close1').on('click', function(c){
-						$('.cart-header').fadeOut('slow', function(c){
-							$('.cart-header').remove();
-						});
-						});	  
-					});
-			   </script>
-			 <div class="cart-header">
-				 <div class="close1"> </div>
-				 <div class="cart-sec simpleCart_shelfItem">
-						<div class="cart-item cyc">
-							 <img src="images/cuisine3.jpg" class="img-responsive" alt="">
-						</div>
-					   <div class="cart-item-info">
-						<h3><a href="#"> Menu Name </a><span>Restaurant name</span></h3>
-						<ul class="qty">
-							<li><p>Quantité :</p></li>
-							<li><p>5</p></li>
-						</ul>
-							 <div class="delivery">
-							 <p>Prix : $10.00</p>
-							 <span>Sur place</span>
-							 <div class="clearfix"></div>
-				        </div>	
-					   </div>
-					   <div class="clearfix"></div>
-											
-				  </div>
-			 </div>
+			 <h1>Mon panier</h1>
 
-			    
 			<table class="table">
 			  <thead>
-			    <tr><th>Article</th><th>Prix</th><th>Quantité</th></tr>
+			    <tr><th>Menu</th><th>Restaurant</th><th>Prix unitaire</th><th>Quantité</th></tr>
 			  </thead>
 			  <tbody id="cart-tablebody" class="cart-tablebody">
 			  </tbody>
 			</table>
 			        
-			<p>Total : <span class="subtotal" id="subtotal"></span>€</p>
+			<p>Prix total : <span class="subtotal" id="subtotal"></span>€</p>
 						  
 		<div class="clearfix"> </div>
 		<div class="register-but">
-				<a href="order.html"><input id="confirm-command" type="button" value="Payer"></a>
+				<a href="order.html"><input id="confirm-command" type="button" value="Poursuivre la commande"></a>
 			   <div class="clearfix"> </div>
 		</div>
 			  	

@@ -64,11 +64,10 @@ inCartItemsSubtotal = parseFloat(getCookie('inCartItemsSubtotal') ? getCookie('i
  
 cartEmptyToggle();
  
-// affiche le nombre d'article du panier dans le widget
+// affiche le nombre d'article du panier
 $('#in-cart-items-num').html(inCartItemsNum);
 $('#in-cart-items-subtotal').html(inCartItemsSubtotal);
  
-// hydrate le panier
 var items = '';
 cartArticles.forEach(function(v) {
    items += '<li id="'+ v.id +'"><a href="'+ v.url +'">'+ v.name +'<br><small>Quantité : <span class="qt">'+ v.qt +'</span></small></a></li>';
@@ -81,13 +80,13 @@ $(document).on('click', '.add-to-cart', function () {
   // récupération des infos du produit
   var $this = $(this);
   var id = $this.attr('data-id');
-  var name = $this.attr('data-name');
+  var name = $this.attr('data-name').replaceAll('_', ' ');
   var price = $this.attr('data-price');
-  var restaurant = $this.attr('data-restaurant');
+  var restaurant = $this.attr('data-restaurant').replaceAll('_', ' ');
   var url = $this.attr('data-url');
   var qt = parseInt($('#qt'+id).val());
   inCartItemsNum += qt;
-  inCartItemsSubtotal = inCartItemsSubtotal + parseFloat(price);
+  inCartItemsSubtotal = inCartItemsSubtotal + parseFloat(price*qt);
 
   // mise à jour du nombre de produit dans le widget
   $('#in-cart-items-num').html(inCartItemsNum);
@@ -130,6 +129,8 @@ $(document).on('click', '.add-to-cart', function () {
 if (window.location.pathname == '/ECOM3/checkout.html') {
 	console.log("bonjour checkout");
   var items = "";
+  var items2 = "";
+
   var subTotal = 0;
   var total;
   console.log(cartArticles);
@@ -144,11 +145,16 @@ if (window.location.pathname == '/ECOM3/checkout.html') {
   cartArticles.forEach(function(v) {
     // opération sur un entier pour éviter les problèmes d'arrondis
     var itemPrice = v.price.replace(',', '.') * 1000;
-    items += '<tr data-id="'+ v.id +'">\
-             <td><a href="'+ v.url +'">'+ v.name +'</a></td>\
+    
+    
+    items2 += '<tr data-id="'+ v.id +'">\
+             <td><p>'+ v.name +'</p></td>\
+             <td><p>'+ v.restaurant +'</p></td>\
              <td>'+ v.price +'€</td>\
-             <td><span class="qt">'+ v.qt +'</span> <span class="qt-minus">–</span> <span class="qt-plus">+</span> \
-             <a class="delete-item">Supprimer</a></td></tr>';
+             <td><span class="qt">'+ v.qt +'</span> <span class="qt-minus" style="margin-left:6%;">–</span> <span class="qt-plus" style="margin-left:6%;">+</span> \
+             <a class="delete-item" style="margin-left:6%;">Supprimer</a></td></tr>';
+             
+            
     subTotal += v.price.replace(',', '.') * v.qt;
   });
  
@@ -156,7 +162,7 @@ if (window.location.pathname == '/ECOM3/checkout.html') {
   //subTotal = subTotal / 1000;
 
   // On insère le contenu du tableau et le sous total
-  $('#cart-tablebody').html(items);
+  $('#cart-tablebody').html(items2);
   $('.subtotal').html(subTotal.toFixed(2).replace('.', ','));
   
   // lorsqu'on clique sur le "+" du panier
@@ -261,7 +267,20 @@ if (window.location.pathname == '/ECOM3/checkout.html') {
   });
 }
 
+  
 function updateCart() {
 	$('#in-cart-items-num').html(inCartItemsNum);
 	$('#in-cart-items-subtotal').html(inCartItemsSubtotal + "€");
 }
+
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.split(search).join(replacement);
+};
+
+function resumeCommande() {
+	var text = "Commande de " + inCartItemsNum + " menus pour un total de " + inCartItemsSubtotal + "€";
+    document.getElementById("resumeCommande").innerHTML = text;
+    updateCart();
+}
+

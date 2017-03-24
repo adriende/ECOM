@@ -16,6 +16,7 @@ function myFunction(xml) {
     var xmlDoc = xml.responseXML;
     var name = [];
     var data_name = [];
+    var data_restaurant = [];
     var id = [];
     var price = [];
     var description = [];
@@ -42,6 +43,7 @@ function myFunction(xml) {
 
 	for (j=0; j<name.length; j++){
 		data_name[j] = name[j].replaceAll(' ', '_');
+		data_restaurant[j] = restaurant[j].replaceAll(' ', '_');
 		qtId[j] = "qt" + id[j];
 	}
 
@@ -76,7 +78,7 @@ function myFunction(xml) {
 								"<div class=\"pr-right\">"+
 								"<div class=\"item_add\">"+
 
-								"<a class=\"add-to-cart\" data-id=" + id[i] +" data-name="+ data_name[i] +" data-price="+price[i] + " data-restaurant="+restaurant[i] + " href=\"#\">Ajouter</a>"+
+								"<a class=\"add-to-cart\" data-id=" + id[i] +" data-name="+ data_name[i] +" data-price="+price[i] + " data-restaurant="+data_restaurant[i] + " href=\"#\">Ajouter</a>"+
 								"<select id="+qtId[i]+" name=\"q\" style=\"margin-left:5%\">"+
 								"  <option value=\"1\">1</option>"+
 								 " <option value=\"2\">2</option>"+
