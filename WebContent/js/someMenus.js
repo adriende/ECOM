@@ -7,6 +7,10 @@ function myFunction(xml) {
     var description = [];
     var restaurant = [];
     var htmlText = "";
+    var data_name = [];
+    var data_restaurant = [];
+    var qtId = [];
+
 
     
     for (i = 0; i< xmlDoc.getElementsByTagName("id").length; i++){
@@ -16,6 +20,12 @@ function myFunction(xml) {
         description[i] = xmlDoc.getElementsByTagName("description")[i].childNodes[0].nodeValue;
         restaurant[i] = xmlDoc.getElementsByTagName("restaurant")[i].childNodes[0].nodeValue;
     }
+    
+	for (j=0; j<name.length; j++){
+		data_name[j] = name[j].replaceAll(' ', '_');
+		data_restaurant[j] = restaurant[j].replaceAll(' ', '_');
+		qtId[j] = "qt" + id[j];
+	}
 
 	  if(name.length !== 0){	
 	    	//S'il y a au moins un menu disponible
@@ -41,8 +51,23 @@ function myFunction(xml) {
 					"<div class=\"item_add\"><span class=\"item_price\"><h6>" + price[i] + " € </h6></span></div>"+
 					"</div>"+
 					"<div class=\"pr-right\">"+
-					"<div class=\"item_add\"><span class=\"item_price\"><a href=\"#\">Ajouter</a></span></div>"+
-					"</div>"+
+					"<div class=\"item_add\">"+
+
+					"<a class=\"add-to-cart\" data-id=" + id[i] +" data-name="+ data_name[i] +" data-price="+price[i] + " data-restaurant="+data_restaurant[i] + " href=\"#\">Ajouter</a>"+
+					"<select id="+qtId[i]+" name=\"q\" style=\"margin-left:5%\">"+
+					"  <option value=\"1\">1</option>"+
+					 " <option value=\"2\">2</option>"+
+					 " <option value=\"3\">3</option>"+
+					 " <option value=\"4\">4</option>"+
+					 " <option value=\"5\">5</option>"+
+					 " <option value=\"6\">6</option>"+
+					 " <option value=\"7\">7</option>"+
+					 " <option value=\"8\">8</option>"+
+					 " <option value=\"9\">9</option>"+
+					 " <option value=\"10\">10</option>"+
+					"</select><br>"+
+					"</div></div>"+
+
 					"		<div class=\"clearfix\"></div>"+
 					"	</div>";
         	}

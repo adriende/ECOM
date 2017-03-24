@@ -73,7 +73,7 @@ var getDataFromURL = function(){
 	var restaurantFromURL = f["inputRestaurant"];
 	var foodFromURL = f["inputFood"];
 	
-	cityFromURL = cityFromURL.replace("+", " ");
+	cityFromURL = cityFromURL.replace("+", " ").replace("%27", "'").replace("%C3%A8", "è");
 	restaurantFromURL = restaurantFromURL.replace("+", " ");
 	foodFromURL = foodFromURL.replace("+", " ");
 
