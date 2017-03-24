@@ -79,6 +79,7 @@ height: 'auto',
      </script>
 <script src="js/jquery.easydropdown.js"></script>
 <script src="js/checkout.js"> </script>
+<script src="js/order.js"> </script>
 
 </head>
 <body onload="resumeCommande();">
@@ -156,7 +157,7 @@ height: 'auto',
 					</div>
 					<span>Type de commande</span>
 					 <div class="dropdown-button">           			
-            			<select class="dropdown" tabindex="9" data-settings='{"wrapperClass":"flat"}'>
+            			<select class="dropdown" id="inputType" tabindex="9" data-settings='{"wrapperClass":"flat"}'>
             			<option value="0">À venir chercher</option>	
 						<option value="1">Livraison</option>
 						<option value="2">Sur place</option>
@@ -171,7 +172,7 @@ height: 'auto',
 					  </select> 
 					</div>
 					<div class="wow swing animated" data-wow-delay= "0.4s">
-					<input type="button" value="Payer" onclick="alert('Commande validée');">
+					<input type="button" value="Payer" onclick="sendOrder();">
 					</div>
 					</div>
 				</div>
@@ -267,7 +268,7 @@ height: 'auto',
 	<!-- footer-section-starts -->
 	<div class="footer">
 		<div class="container">
-			<p class="wow fadeInLeft" data-wow-delay="0.4s">&copy; 2017  Tous droits réservés - GangScred</p>
+			<p class="wow fadeInLeft" data-wow-delay="0.4s">&copy; 2017  Tous droits réservés - GangScred - Adrien Delaporte</p>
 		</div>
 	</div>
 	<!-- footer-section-ends -->

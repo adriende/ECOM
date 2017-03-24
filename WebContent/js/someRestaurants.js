@@ -73,9 +73,10 @@ var getDataFromURL = function(){
 	var restaurantFromURL = f["inputRestaurant"];
 	var foodFromURL = f["inputFood"];
 	
-	cityFromURL = cityFromURL.replace("+", " ").replace("%27", "'").replace("%C3%A8", "è");
-	restaurantFromURL = restaurantFromURL.replace("+", " ");
-	foodFromURL = foodFromURL.replace("+", " ");
+	cityFromURL = cityFromURL.replaceAll("+", " ").replaceAll("%27", "'").replaceAll("%C3%A8", "è").replaceAll("%C3%A9", "é");
+	restaurantFromURL = restaurantFromURL.replaceAll("+", " ").replaceAll("%C3%A9", "é").replaceAll("%C3%A8", "è");
+	console.log(restaurantFromURL);
+	foodFromURL = foodFromURL.replaceAll("+", " ");
 
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
@@ -116,4 +117,9 @@ var getDataFromURL = function(){
 	myFunction(xml);
 	
 }
+
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.split(search).join(replacement);
+};
 
