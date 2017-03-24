@@ -59,7 +59,7 @@ function myFunction(xml) {
 }
 
 var getDataFromURL = function(){
-
+	updateCart();
 	var url = window.location.search;
 
 	var t = location.search.substring(1).split('&');

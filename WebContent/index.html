@@ -25,7 +25,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script>
 	new WOW().init();
 </script>
-<script src="js/simpleCart.min.js"> </script>	
+<script src="js/simpleCart.js"> </script>	
 <script type="text/javascript" src="js/move-top.js"></script>
 <script type="text/javascript" src="js/easing.js"></script>
 <script type="text/javascript">
@@ -36,9 +36,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				});
 			});
 		</script>
+<script src="js/checkout.js"> </script>
+
 
 </head>
-<body>
+<body onload="updateCart();">
     <!-- header-section-starts -->
 	<div class="header">
 		<div class="container">
@@ -52,7 +54,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="header-right">
 						<div class="cart box_1">
 							<a href="checkout.html">
-								<h3> <span class="simpleCart_total"> 0.00€ </span> (<span id="simpleCart_quantity" class="simpleCart_quantity"> 0 </span> menus)<img src="images/bag.png" alt=""></h3>
+								<h3> <span id="in-cart-items-subtotal"> 0.00€ </span> (<span id="in-cart-items-num"> 0 </span> menus)<img src="images/bag.png" alt=""></h3>
 							</a>	
 							<p><a href="javascript:;" class="simpleCart_empty">Vider le panier</a></p>
 							<div class="clearfix"> </div>
@@ -67,7 +69,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<ul>
 						<li class="active"><a href="#Home" class="scroll">Accueil</a></li>|
 						<li><a href="popular-Restaurents.html">Restaurants</a></li>|
-						<li><a href="order.html">Commander</a></li>|
 						<li><a href="orders-list.html">Menus</a></li>|
 						<li><a href="contact.html">Contact</a></li>
 						<div class="clearfix"></div>
@@ -261,79 +262,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</div>
 		</div>
 		</div>
-		<div class="popular-restaurents" id="Popular-Restaurants">
-			<div class="container">
-				<div class="col-md-4 top-restaurents">
-					<div class="top-restaurent-head">
-						<h3>Top Restaurants</h3>
-					</div>
-					<div class="top-restaurent-grids">
-						<div class="top-restaurent-logos">
-							<div class="res-img-1 wow bounceIn" data-wow-delay="0.4s">
-								<img src="https://s3-us-west-2.amazonaws.com/ecom.ecom/restaurants/restaurent-1.jpg" class="img-responsive" alt="" />
-							</div>
-							<div class="res-img-2 wow bounceIn" data-wow-delay="0.4s">
-							    <img src="https://s3-us-west-2.amazonaws.com/ecom.ecom/restaurants/restaurent-2.jpg" class="img-responsive" alt="" />
-							</div>
-							<div class="res-img-1 wow bounceIn" data-wow-delay="0.4s">
-							    <img src="https://s3-us-west-2.amazonaws.com/ecom.ecom/restaurants/restaurent-3.jpg" class="img-responsive" alt="" />
-							</div>
-							<div class="res-img-2 wow bounceIn" data-wow-delay="0.4s">
-							    <img src="https://s3-us-west-2.amazonaws.com/ecom.ecom/restaurants/restaurent-4.jpg" class="img-responsive" alt="" />
-							</div>
-							<div class="res-img-1 nth-grid1 wow bounceIn" data-wow-delay="0.4s">
-							    <img src="https://s3-us-west-2.amazonaws.com/ecom.ecom/restaurants/restaurent-5.jpg" class="img-responsive" alt="" />
-							</div>
-							<div class="res-img-2 nth-grid1 wow bounceIn" data-wow-delay="0.4s">
-							    <img src="https://s3-us-west-2.amazonaws.com/ecom.ecom/restaurants/restaurent-6.jpg" class="img-responsive" alt="" />
-							</div>
-							<div class="clearfix"></div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-8 top-cuisines">
-					<div class="top-cuisine-head">
-						<h3>Top Cuisines</h3>
-					</div>
-					<div class="top-cuisine-grids">
-						<div class="top-cuisine-grid wow bounceIn" data-wow-delay="0.4s">
-						    <a href=""><img src="images/cuisine1.jpg" class="img-responsive" alt="" /> </a>
-							<label>Pizza</label>
-					    </div>
-						<div class="top-cuisine-grid wow bounceIn" data-wow-delay="0.4s">
-						    <a href=""><img src="images/cuisine2.jpg" class="img-responsive" alt="" /> </a>
-							<label>Cuisine Name</label>
-					    </div>
-						<div class="top-cuisine-grid wow bounceIn" data-wow-delay="0.4s">
-						    <a href=""><img src="images/cuisine3.jpg" class="img-responsive" alt="" /> </a>
-							<label>Cuisine Name</label>
-					    </div>
-						<div class="top-cuisine-grid nth-grid wow bounceIn" data-wow-delay="0.4s">
-						    <a href=""><img src="images/cuisine4.jpg" class="img-responsive" alt="" /> </a>
-							<label>Cuisine Name</label>
-					    </div>
-						<div class="top-cuisine-grid nth-grid1 wow bounceIn" data-wow-delay="0.4s">
-						    <a href=""><img src="images/cuisine5.jpg" class="img-responsive" alt="" /> </a>
-							<label>Cuisine Name</label>
-					    </div>
-						<div class="top-cuisine-grid nth-grid1 wow bounceIn" data-wow-delay="0.4s">
-						    <a href=""><img src="images/cuisine6.jpg" class="img-responsive" alt="" /> </a>
-							<label>Cuisine Name</label>
-					    </div>
-						<div class="top-cuisine-grid nth-grid1 wow bounceIn" data-wow-delay="0.4s">
-						    <a href=""><img src="images/cuisine7.jpg" class="img-responsive" alt="" /> </a>
-							<label>Cuisine Name</label>
-					    </div>
-						<div class="top-cuisine-grid nth-grid nth-grid1 wow bounceIn" data-wow-delay="0.4s">
-						    <a href=""><img src="images/cuisine8.jpg" class="img-responsive" alt="" /> </a>
-							<label>Cuisine Name</label>
-					    </div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-		</div>
+		
 		<div class="service-section">
 			<div class="service-section-top-row">
 				<div class="container">
@@ -359,7 +288,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<img src="images/lunch.png" class="img-responsive" alt="" />
 					</div>
 					<div class="col-md-2 service-section-top-row-grid4 wow swing animated" data-wow-delay= "0.4s">
-						<a href="order.html"><input type="submit" value="Commander"></a>
+						<a href="orders-list.html"><input type="submit" value="Commander"></a>
 					</div>
 					<div class="clearfix"></div>
 					</div>

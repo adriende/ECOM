@@ -15,10 +15,12 @@ function isInArray(value, array) {
 function myFunction(xml) {
     var xmlDoc = xml.responseXML;
     var name = [];
+    var data_name = [];
     var id = [];
     var price = [];
     var description = [];
     var restaurant = [];
+    var qtId = [];
     var htmlText = "";
 
     
@@ -38,8 +40,11 @@ function myFunction(xml) {
     	}   	 	
     }
 
-    
-	    		
+	for (j=0; j<name.length; j++){
+		data_name[j] = name[j].replaceAll(' ', '_');
+		qtId[j] = "qt" + id[j];
+	}
+
 	    		
 	    	for (j=0; j<restaurantFinal.length; j++){
 	    		
@@ -69,8 +74,23 @@ function myFunction(xml) {
 								"<div class=\"item_add\"><span class=\"item_price\"><h6>" + price[i] + " € </h6></span></div>"+
 								"</div>"+
 								"<div class=\"pr-right\">"+
-								"<div class=\"item_add\"><span class=\"item_price\"><a href=\"#\">Ajouter</a></span></div>"+
-								"</div>"+
+								"<div class=\"item_add\">"+
+
+								"<a class=\"add-to-cart\" data-id=" + id[i] +" data-name="+ data_name[i] +" data-price="+price[i] + " data-restaurant="+restaurant[i] + " href=\"#\">Ajouter</a>"+
+								"<select id="+qtId[i]+" name=\"q\" style=\"margin-left:5%\">"+
+								"  <option value=\"1\">1</option>"+
+								 " <option value=\"2\">2</option>"+
+								 " <option value=\"3\">3</option>"+
+								 " <option value=\"4\">4</option>"+
+								 " <option value=\"5\">5</option>"+
+								 " <option value=\"6\">6</option>"+
+								 " <option value=\"7\">7</option>"+
+								 " <option value=\"8\">8</option>"+
+								 " <option value=\"9\">9</option>"+
+								 " <option value=\"10\">10</option>"+
+								"</select><br>"+
+								"</div></div>"+
+
 								"		<div class=\"clearfix\"></div>"+
 								"	</div>";
 	        		}
@@ -95,3 +115,8 @@ function myFunction(xml) {
     document.getElementById("menusContainer").innerHTML = htmlText;
 
 }
+
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.split(search).join(replacement);
+};

@@ -22,6 +22,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--Animation-->
 <script src="js/wow.min.js"></script>
 <link href="css/animate.css" rel='stylesheet' type='text/css' />
+<link href="css/test.css" rel="stylesheet" type="text/css" media="all" />
+
 <script>
 	new WOW().init();
 </script>
@@ -35,12 +37,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				});
 			});
 		</script>		
-<script src="js/simpleCart.min.js"> </script>
+<!-- <script src="js/simpleCart.js"> </script> -->
 <script src="js/orders-list.js"> </script>	
-<script src="js/checkout.js"> </script>	
+<script src="js/checkout.js"> </script>
 	
 </head>
-<body>
+<body onload="updateCart();">
     <!-- header-section-starts -->
 	<div class="header">
 		<div class="container">
@@ -54,12 +56,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="header-right">
 						<div class="cart box_1">
 							<a href="checkout.html">
-								<h3> <span class="simpleCart_total"> 0.00€ </span> (<span id="simpleCart_quantity" class="simpleCart_quantity"> 0 </span> menus)<img src="images/bag.png" alt=""></h3>
+								<h3> <span id="in-cart-items-subtotal"> 0.00€ </span> (<span id="in-cart-items-num"> 0 </span> menus)<img src="images/bag.png" alt=""></h3>
 							</a>	
 							<p><a href="javascript:;" class="simpleCart_empty">Vider le panier</a></p>
 							<div class="clearfix"> </div>
 						</div>
 					</div>
+					
 				<div class="clearfix"></div>
 			</div>
 		</div>
@@ -69,7 +72,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<ul>
 						<li><a href="index.html">Accueil</a></li>|
 						<li><a href="popular-Restaurents.html">Restaurants</a></li>|
-						<li><a href="order.html">Commander</a></li>|
 						<li class="active"><a href="orders-list.html">Menus</a></li>|
 						<li><a href="contact.html">Contact</a></li>
 						<div class="clearfix"></div>
@@ -99,6 +101,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div class="container" id="menusContainer">
 		
 	</div>
+
 </div>
 	<div class="contact-section" id="contact">
 			<div class="container">

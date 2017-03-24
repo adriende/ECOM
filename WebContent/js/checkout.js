@@ -11,10 +11,11 @@ function setCookie(cname, cvalue, exdays) {
   document.cookie = cname + "=" + cvalue + "; " + expires+';path=/';
 }
 
-function saveCart(inCartItemsNum, cartArticles) {
+function saveCart(inCartItemsNum, cartArticles, inCartItemsSubtotal) {
 	  setCookie('inCartItemsNum', inCartItemsNum, 5);
+	  setCookie('inCartItemsSubtotal', inCartItemsSubtotal, 5)
 	  setCookie('cartArticles', JSON.stringify(cartArticles), 5);
-	}
+}
 
 function getCookie(cname) {
 	  var name = cname + "=";
@@ -36,11 +37,12 @@ function getCookie(cname) {
 	    }
 	  }
 	  return false;
-	}
+}
 
 //variables pour stocker le nombre d'articles et leurs noms
 var inCartItemsNum;
 var cartArticles;
+var inCartItemsSubtotal;
  
 // affiche/cache les éléments du panier selon s'il contient des produits
 function cartEmptyToggle() {
@@ -58,11 +60,13 @@ function cartEmptyToggle() {
 // récupère les informations stockées dans les cookies
 inCartItemsNum = parseInt(getCookie('inCartItemsNum') ? getCookie('inCartItemsNum') : 0);
 cartArticles = getCookie('cartArticles') ? JSON.parse(getCookie('cartArticles')) : [];
+inCartItemsSubtotal = parseFloat(getCookie('inCartItemsSubtotal') ? getCookie('inCartItemsSubtotal') : 0);
  
 cartEmptyToggle();
  
 // affiche le nombre d'article du panier dans le widget
 $('#in-cart-items-num').html(inCartItemsNum);
+$('#in-cart-items-subtotal').html(inCartItemsSubtotal);
  
 // hydrate le panier
 var items = '';
@@ -73,20 +77,21 @@ cartArticles.forEach(function(v) {
 $('#cart-dropdown').prepend(items);
 
 //click bouton ajout panier
-$('.add-to-cart').click(function() {
-  
+$(document).on('click', '.add-to-cart', function () {
   // récupération des infos du produit
   var $this = $(this);
   var id = $this.attr('data-id');
   var name = $this.attr('data-name');
   var price = $this.attr('data-price');
-  var weight = $this.attr('data-weight');
+  var restaurant = $this.attr('data-restaurant');
   var url = $this.attr('data-url');
-  var qt = parseInt($('#qt').val());
+  var qt = parseInt($('#qt'+id).val());
   inCartItemsNum += qt;
-  
+  inCartItemsSubtotal = inCartItemsSubtotal + parseFloat(price);
+
   // mise à jour du nombre de produit dans le widget
   $('#in-cart-items-num').html(inCartItemsNum);
+  $('#in-cart-items-subtotal').html(inCartItemsSubtotal + "€");
   
   var newArticle = true;
   
@@ -108,25 +113,26 @@ $('.add-to-cart').click(function() {
       id: id,
       name: name,
       price: price,
-      weight: weight,
+      restaurant: restaurant,
       qt: qt,
       url: url
     });
   }
  
   // sauvegarde le panier
-  saveCart(inCartItemsNum, cartArticles);
+  saveCart(inCartItemsNum, cartArticles, inCartItemsSubtotal);
  
   // affiche le contenu du panier si c'est le premier article
   cartEmptyToggle();
 });
 
-//si on est sur la page ayant pour url monsite.fr/panier/
-if (window.location.pathname == '/panier/') {
-  var items = '';
+//si on est sur la page ayant pour url /ECOM3/checkout.html
+if (window.location.pathname == '/ECOM3/checkout.html') {
+	console.log("bonjour checkout");
+  var items = "";
   var subTotal = 0;
   var total;
-  var weight = 0;
+  console.log(cartArticles);
   
   /* on parcourt notre array et on créé les lignes du tableau pour nos articles :
   * - Le nom de l'article (lien cliquable qui mène à la fiche produit)
@@ -144,14 +150,13 @@ if (window.location.pathname == '/panier/') {
              <td><span class="qt">'+ v.qt +'</span> <span class="qt-minus">–</span> <span class="qt-plus">+</span> \
              <a class="delete-item">Supprimer</a></td></tr>';
     subTotal += v.price.replace(',', '.') * v.qt;
-    weight += v.weight * v.qt;
   });
  
   // on reconverti notre résultat en décimal
-  subTotal = subTotal / 1000;
-  
+  //subTotal = subTotal / 1000;
+
   // On insère le contenu du tableau et le sous total
-  $('#cart-tablebody').empty().html(items);
+  $('#cart-tablebody').html(items);
   $('.subtotal').html(subTotal.toFixed(2).replace('.', ','));
   
   // lorsqu'on clique sur le "+" du panier
@@ -161,11 +166,9 @@ if (window.location.pathname == '/panier/') {
     // récupère la quantité actuelle et l'id de l'article
     var qt = parseInt($this.prevAll('.qt').html());
     var id = $this.parent().parent().attr('data-id');
-    var artWeight = parseInt($this.parent().parent().attr('data-weight'));
  
-    // met à jour la quantité et le poids
+    // met à jour la quantité
     inCartItemsNum += 1;
-    weight += artWeight;
     $this.prevAll('.qt').html(qt + 1);
     $('#in-cart-items-num').html(inCartItemsNum);
     $('#'+ id + ' .qt').html(qt + 1);
@@ -184,7 +187,9 @@ if (window.location.pathname == '/panier/') {
     
     // met à jour la quantité du widget et sauvegarde le panier
     $('.subtotal').html(subTotal.toFixed(2).replace('.', ','));
-    saveCart(inCartItemsNum, cartArticles);
+    inCartItemsSubtotal = subTotal.toFixed(2).replace('.', ',');
+	$('#in-cart-items-subtotal').html(inCartItemsSubtotal + "€");
+    saveCart(inCartItemsNum, cartArticles, inCartItemsSubtotal);
   });
   
   // quantité -
@@ -192,12 +197,10 @@ if (window.location.pathname == '/panier/') {
     var $this = $(this);
     var qt = parseInt($this.prevAll('.qt').html());
     var id = $this.parent().parent().attr('data-id');
-    var artWeight = parseInt($this.parent().parent().attr('data-weight'));
  
     if (qt > 1) {
       // maj qt
       inCartItemsNum -= 1;
-      weight -= artWeight;
       $this.prevAll('.qt').html(qt - 1);
       $('#in-cart-items-num').html(inCartItemsNum);
       $('#'+ id + ' .qt').html(qt - 1);
@@ -214,7 +217,9 @@ if (window.location.pathname == '/panier/') {
       });
       
       $('.subtotal').html(subTotal.toFixed(2).replace('.', ','));
-      saveCart(inCartItemsNum, cartArticles);
+      inCartItemsSubtotal = subTotal.toFixed(2).replace('.', ',');
+  	$('#in-cart-items-subtotal').html(inCartItemsSubtotal + "€");
+      saveCart(inCartItemsNum, cartArticles, inCartItemsSubtotal);
     }
   });
   
@@ -223,7 +228,6 @@ if (window.location.pathname == '/panier/') {
     var $this = $(this);
     var qt = parseInt($this.prevAll('.qt').html());
     var id = $this.parent().parent().attr('data-id');
-    var artWeight = parseInt($this.parent().parent().attr('data-weight'));
     var arrayId = 0;
     var price;
     
@@ -242,7 +246,6 @@ if (window.location.pathname == '/panier/') {
             // as usual, calcul sur des entiers
             var itemPrice = v.price.replace(',', '.') * 1000;
             subTotal -= (itemPrice * qt) / 1000;
-            weight -= artWeight * qt;
             cartArticles.splice(arrayId, 1);
             
             return false;
@@ -251,7 +254,14 @@ if (window.location.pathname == '/panier/') {
     });
     
     $('.subtotal').html(subTotal.toFixed(2).replace('.', ','));
-    saveCart(inCartItemsNum, cartArticles);
+    inCartItemsSubtotal = subTotal.toFixed(2).replace('.', ',');
+	$('#in-cart-items-subtotal').html(inCartItemsSubtotal + "€");
+    saveCart(inCartItemsNum, cartArticles, inCartItemsSubtotal);
     cartEmptyToggle();
   });
+}
+
+function updateCart() {
+	$('#in-cart-items-num').html(inCartItemsNum);
+	$('#in-cart-items-subtotal').html(inCartItemsSubtotal + "€");
 }

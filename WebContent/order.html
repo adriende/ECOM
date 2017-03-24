@@ -78,9 +78,10 @@ height: 'auto',
 
      </script>
 <script src="js/jquery.easydropdown.js"></script>
-<script src="js/simpleCart.min.js"> </script>	
+<script src="js/checkout.js"> </script>
+
 </head>
-<body>
+<body onload="updateCart();">
     <!-- header-section-starts -->
 	<div class="header">
 		<div class="container">
@@ -94,7 +95,7 @@ height: 'auto',
 				<div class="header-right">
 						<div class="cart box_1">
 							<a href="checkout.html">
-								<h3> <span class="simpleCart_total"> 0.00€ </span> (<span id="simpleCart_quantity" class="simpleCart_quantity"> 0 </span> menus)<img src="images/bag.png" alt=""></h3>
+								<h3> <span id="in-cart-items-subtotal"> 0.00€ </span> (<span id="in-cart-items-num"> 0 </span> menus)<img src="images/bag.png" alt=""></h3>
 							</a>	
 							<p><a href="javascript:;" class="simpleCart_empty">Vider le panier</a></p>
 							<div class="clearfix"> </div>
@@ -109,7 +110,6 @@ height: 'auto',
 					<ul>
 						<li><a href="index.html">Accueil</a></li>|
 						<li><a href="popular-Restaurents.html">Restaurants</a></li>|
-						<li class="active"><a href="order.html">Commander</a></li>|
 						<li><a href="orders-list.html">Menus</a></li>|
 						<li><a href="contact.html">Contact</a></li>
 						<div class="clearfix"></div>
@@ -138,41 +138,40 @@ height: 'auto',
 				<div class="col-md-6 order-form-grids">
 					
 					<div class="order-form-grid  wow fadeInLeft" data-wow-delay="0.4s">
-						<h5>Informations</h5>
-								<span>Type de commande</span>
-								 <div class="dropdown-button">           			
+					<span>Nom</span>
+					<div>           			
+						<input type="text" class="text" id="inputName" placeholder="Entrer votre nom" onfocus="this.value = '';"><br>
+					</div>
+					<span>Adresse</span>
+					<div>           			
+						<input type="text" class="text" id="inputAddress" placeholder="Entrer votre adresse" onfocus="this.value = '';"><br>
+					</div>
+					<span>Email</span>
+					<div>           			
+						<input type="text" class="text" id="inputMail" placeholder="Entrer votre adresse email" onfocus="this.value = '';"><br>
+					</div>
+					<span>Téléphone</span>
+					<div>           			
+						<input type="text" class="text" id="inputPhone" placeholder="Entrer votre numéro de téléphone" onfocus="this.value = '';"><br>
+					</div>
+					<span>Type de commande</span>
+					 <div class="dropdown-button">           			
             			<select class="dropdown" tabindex="9" data-settings='{"wrapperClass":"flat"}'>
             			<option value="0">À venir chercher</option>	
 						<option value="1">Livraison</option>
 						<option value="2">Sur place</option>
 					  </select>
 					</div>
-		              <span>Choisissez votre restaurant</span>
-					   <div class="dropdown-button wow">           			
-            			<select class="dropdown" tabindex="9" data-settings='{"wrapperClass":"flat"}'>
-            			<option value="0">Restaurent A,144 East MG Road Indore</option>	
-						<option value="1">Restaurent B,64 Paarli Hills IndoreIndore</option>
-					  </select> 
-					</div>
-					<span>Adresse</span>
-								 <div class="dropdown-button">           			
-            			<select class="dropdown" tabindex="9" data-settings='{"wrapperClass":"flat"}'>
-            			<option value="0">Secundrabad</option>	
-						<option value="1">Location-1</option>
-						<option value="2">Location-2</option>
-					  </select>
-					</div>
 					<span>Date</span>
 					   <div class="dropdown-button">           			
             			<select class="dropdown" tabindex="9" data-settings='{"wrapperClass":"flat"}'>
-            			<option value="0">cuisine-name</option>	
-						<option value="1">cuisine-name</option>
-						<option value="2">cuisine-name</option>
+            			<option value="0">Choisir date</option>	
+						<option value="1">date 2</option>
+						<option value="2">date 3</option>
 					  </select> 
 					</div>
-					<input type="text" class="text" value="Heure" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Time';}"><br>
 					<div class="wow swing animated" data-wow-delay= "0.4s">
-					<input type="button" value="Commander">
+					<input type="button" value="Payer">
 					</div>
 					</div>
 				</div>
