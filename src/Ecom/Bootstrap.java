@@ -19,7 +19,7 @@ public class Bootstrap extends HttpServlet {
 		beanConfig.setTitle("Ecom API");
 		beanConfig.setDescription("The API for the ecom application.");
 		beanConfig.setSchemes(new String[] { "http" });
-		beanConfig.setHost("52.39.66.76:8080");
+		beanConfig.setHost("46.101.98.122:8080");
 		beanConfig.setBasePath("/ECOM3/api");
 		beanConfig.setResourcePackage("Ecom");
 		beanConfig.setScan(true);
